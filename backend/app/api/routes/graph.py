@@ -1,11 +1,13 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from ...db.session import get_db
+from ...schemas.graph import GraphResponse
+from ...services.graph_service import GraphService
 
 router = APIRouter()
 
 
 @router.get("")
-def get_graph() -> None:
-    raise HTTPException(
-        status_code=status.HTTP_501_NOT_IMPLEMENTED,
-        detail="Flow graph queries are not implemented.",
-    )
+def get_graph(db: Session = Depends(get_db)) -> GraphResponse:
+    return GraphService(db).load_graph()

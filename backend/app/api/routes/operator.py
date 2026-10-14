@@ -3,18 +3,18 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from pydantic import ValidationError
 
-from app.ai_operator.providers.base import (
+from ...ai_operator.providers.base import (
     ProviderConfigurationError,
     ProviderUnavailableError,
     UnusableProviderResponse,
 )
-from app.ai_operator.schemas import (
+from ...ai_operator.schemas import (
     OperatorChatRequest,
     OperatorChatResponse,
     OperatorIdentity,
     OperatorScope,
 )
-from app.ai_operator.service import OperatorService, get_operator_service
+from ...ai_operator.service import OperatorService, get_operator_service
 
 router = APIRouter()
 

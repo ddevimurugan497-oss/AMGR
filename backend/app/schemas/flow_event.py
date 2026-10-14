@@ -6,9 +6,18 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class ComponentRef(BaseModel):
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     component_id: str
     component_type: str
     name: str | None = None
+
+    @field_validator("component_id", "component_type")
+    @classmethod
+    def validate_required_identity(cls, value: str) -> str:
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError("Component identity fields must be non-empty strings.")
+        return value.strip()
 
 
 class FlowEvent(BaseModel):
@@ -26,6 +35,13 @@ class FlowEvent(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
     status: str = "observed"
     duration_ms: float | None = Field(default=None, ge=0)
+
+    @field_validator("action")
+    @classmethod
+    def validate_action(cls, value: str) -> str:
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError("action must be a non-empty string.")
+        return value.strip()
 
     @field_validator("timestamp")
     @classmethod

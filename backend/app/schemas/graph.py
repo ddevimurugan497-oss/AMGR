@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 
 from pydantic import BaseModel, Field
 
-from app.schemas.flow_event import ComponentRef
+from .flow_event import ComponentRef
 
 
 class GraphNode(BaseModel):

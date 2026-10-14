@@ -1,10 +1,10 @@
-from app.ai_operator.providers.base import (
+from .base import (
     ProviderConfigurationError,
     ProviderMessage,
     ProviderResponse,
     ProviderUnavailableError,
 )
-from app.core.config import Settings
+from ...core.config import Settings
 
 
 class OpenAIProvider:

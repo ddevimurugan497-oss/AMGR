@@ -35,7 +35,7 @@ export interface GraphEdge {
 export interface GraphResponse {
   nodes: GraphNode[];
   edges: GraphEdge[];
-  generated_at?: string;
+  generated_at: string;
 }
 
 export type PolicyEffect = "ALLOW" | "BLOCK" | "REQUIRE_APPROVAL";

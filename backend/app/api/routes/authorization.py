@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 
-from app.schemas.authorization import AuthorizationRequest
+from ...schemas.authorization import AuthorizationRequest
 
 router = APIRouter()
 

@@ -1,18 +1,9 @@
 import { notFound } from "next/navigation";
 
 import { FeaturePlaceholder } from "@/components/feature-placeholder";
+import { FlowGraphPage } from "@/components/graph/FlowGraphPage";
 
 const sections: Record<string, { title: string; purpose: string; availability: string }> = {
-  graph: {
-    title: "Flow Graph",
-    purpose: "View relationships and information flows between runtime components.",
-    availability: "The backend graph query handler currently returns HTTP 501. Graph data is not available in this dashboard.",
-  },
-  "flow-graph": {
-    title: "Flow Graph",
-    purpose: "View relationships and information flows between runtime components.",
-    availability: "The backend graph query handler currently returns HTTP 501. Graph data is not available in this dashboard.",
-  },
   policies: {
     title: "Policies",
     purpose: "Review governance policy definitions and enforcement rules.",
@@ -42,6 +33,11 @@ const sections: Record<string, { title: string; purpose: string; availability: s
 
 export default async function SectionPage({ params }: { params: Promise<{ section: string }> }) {
   const { section } = await params;
+
+  if (section === "graph" || section === "flow-graph") {
+    return <FlowGraphPage />;
+  }
+
   const feature = sections[section];
 
   if (!feature) notFound();

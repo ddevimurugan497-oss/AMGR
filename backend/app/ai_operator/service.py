@@ -5,21 +5,21 @@ from uuid import UUID, uuid4
 
 from pydantic import ValidationError
 
-from app.ai_operator.prompts import scoped_system_message
-from app.ai_operator.providers.base import (
+from .prompts import scoped_system_message
+from .providers.base import (
     AIProvider,
     ProviderConfigurationError,
     ProviderMessage,
     UnusableProviderResponse,
 )
-from app.ai_operator.providers.openai_provider import OpenAIProvider
-from app.ai_operator.schemas import (
+from .providers.openai_provider import OpenAIProvider
+from .schemas import (
     OperatorChatRequest,
     OperatorChatResponse,
     OperatorModelResponse,
     OperatorScope,
 )
-from app.core.config import Settings, get_settings
+from ..core.config import Settings, get_settings
 
 
 class ConversationManager(Protocol):

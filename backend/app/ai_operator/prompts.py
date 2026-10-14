@@ -1,6 +1,6 @@
 import json
 
-from app.ai_operator.schemas import OperatorScope
+from .schemas import OperatorScope
 
 SYSTEM_PROMPT = """You are the AMGR AI Security Operator. Assist with security investigation and policy proposals only.
 
